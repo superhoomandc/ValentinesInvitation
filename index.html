@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Surprise for You</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container" id="step1-container">
+        <img src="assets/kutya.gif" 
+             id="main-gif" 
+             class="valentine-gif clickable" 
+             onclick="revealMessage()">
+
+        <div id="hidden-content" class="hidden">
+            <h1>Will you be my Valentine?</h1>
+            <p class="warning-text">(don't click no 😡)</p>
+            <div class="buttons">
+                <button class="btn yes-btn" onclick="showDateDetails()">YES</button>
+                <button class="btn no-btn" onmouseover="moveButton(this)">NO</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container hidden" id="step2-container">
+        <h1>YAY! See you there, my love <3</h1>
+        <img src="assets/ai-ai-dog.gif" class="valentine-gif">
+        
+        <div class="details-box">
+            <p><strong>🗓️ Date:</strong> February 15, 2026</p>
+            <p><strong>⌚️ Time:</strong> 5:00 PM</p>
+            <p><strong>📍 Location:</strong> Dillingers 1903 Steak and Brew Greenbelt 3</p>
+            <p><strong>👗 Wear:</strong> Something White</p>
+        </div>
+    </div>
+
+    <script>
+        function revealMessage() {
+            const gif = document.getElementById('main-gif');
+            const hiddenContent = document.getElementById('hidden-content');
+            const instruction = document.getElementById('instruction-text');
+
+            // 1. Change the GIF to the "reveal" version
+            gif.src = "assets/nanobombs-cat.gif";
+            
+            // 2. Remove the click function so it doesn't reset
+            gif.onclick = null;
+            gif.classList.remove('clickable');
+
+            // 3. Show the question and hide the instruction text
+            hiddenContent.classList.remove('hidden');
+            instruction.style.display = 'none';
+        }
+
+        function showDateDetails() {
+            // Hide the question container
+            document.getElementById('step1-container').classList.add('hidden');
+            
+            // Show the details container
+            document.getElementById('step2-container').classList.remove('hidden');
+            
+            // Optional: Trigger confetti here if you wanted!
+        }
+
+        function moveButton(btn) {
+            const x = Math.random() * (window.innerWidth - btn.clientWidth);
+            const y = Math.random() * (window.innerHeight - btn.clientHeight);
+            btn.style.position = 'absolute';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+    </script>
+</body>
+</html>
